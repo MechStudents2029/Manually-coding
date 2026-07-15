@@ -1,0 +1,6 @@
+{"sessionId": "f1ed26", "runId": "post-fix", "hypothesisId": "D", "location": "main.py:startup", "message": "env_after_dotenv", "data": {"dotenv_exists": true, "dotenv_bytes": 0, "anthropic_key_set": false, "model": "claude-fable-5"}, "timestamp": 1784055710755}
+{"sessionId": "f1ed26", "runId": "post-fix", "hypothesisId": "D", "location": "main.py:startup", "message": "env_after_dotenv", "data": {"dotenv_exists": true, "dotenv_bytes": 0, "anthropic_key_set": false, "model": "claude-fable-5"}, "timestamp": 1784055742317}
+{"sessionId": "f1ed26", "runId": "post-fix", "hypothesisId": "D", "location": "main.py:startup", "message": "env_after_dotenv", "data": {"dotenv_exists": true, "dotenv_bytes": 0, "anthropic_key_set": false, "model": "claude-fable-5"}, "timestamp": 1784055744087}
+{"sessionId": "f1ed26", "runId": "post-fix", "hypothesisId": "C", "location": "main.py:health", "message": "health_ok", "data": {"ok": true}, "timestamp": 1784055747207}
+{"sessionId": "f1ed26", "runId": "post-fix", "hypothesisId": "A", "location": "main.py:submit", "message": "submit_start", "data": {"text_len": 4, "anthropic_key_set": false}, "timestamp": 1784055747268}
+{"sessionId": "f1ed26", "runId": "post-fix", "hypothesisId": "E", "location": "main.py:submit", "message": "submit_done", "data": {"reply_len": 24, "is_fallback": true}, "timestamp": 1784055747268}

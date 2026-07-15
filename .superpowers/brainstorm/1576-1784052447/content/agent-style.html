@@ -1,0 +1,80 @@
+<h2>What should the AI agent look like?</h2>
+<p class="subtitle">Pick the visual direction that feels most "real" to you</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="orb" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0a0a1a;display:flex;align-items:center;justify-content:center;height:160px;border-radius:8px 8px 0 0;overflow:hidden;">
+      <div style="position:relative;width:100px;height:100px;">
+        <div style="width:100px;height:100px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #a78bfa, #4c1d95 60%, #0d0d2b);box-shadow:0 0 40px #7c3aed88,0 0 80px #4c1d9544;animation:pulse 2s ease-in-out infinite;"></div>
+        <div style="position:absolute;top:18px;left:22px;width:30px;height:18px;border-radius:50%;background:rgba(255,255,255,0.18);transform:rotate(-30deg);"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Glowing Orb</h3>
+      <p>Pulsing energy sphere that reacts to voice with ripples and glow shifts. Think Siri / Google Assistant.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="face" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0f1117;display:flex;align-items:center;justify-content:center;height:160px;border-radius:8px 8px 0 0;overflow:hidden;">
+      <div style="position:relative;width:90px;height:110px;">
+        <div style="width:80px;height:90px;border-radius:50% 50% 46% 46%;background:linear-gradient(160deg,#e8c9a0,#c49a6c);margin:0 auto;position:relative;box-shadow:0 4px 20px #0008;">
+          <div style="position:absolute;top:32px;left:14px;width:14px;height:14px;border-radius:50%;background:#1a1a2e;box-shadow:inset 0 0 4px #fff3,0 0 8px #3b82f688;"></div>
+          <div style="position:absolute;top:32px;right:14px;width:14px;height:14px;border-radius:50%;background:#1a1a2e;box-shadow:inset 0 0 4px #fff3,0 0 8px #3b82f688;"></div>
+          <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:28px;height:6px;border-bottom:3px solid #8b5e3c;border-radius:0 0 8px 8px;"></div>
+        </div>
+        <div style="width:30px;height:20px;background:linear-gradient(#c49a6c,#a07850);margin:0 auto;border-radius:0 0 4px 4px;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>3D Face / Avatar</h3>
+      <p>A humanoid head that animates — eyes blink, mouth moves while speaking. Personal and expressive.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="hologram" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#000d1a;display:flex;align-items:center;justify-content:center;height:160px;border-radius:8px 8px 0 0;overflow:hidden;position:relative;">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,200,255,0.04) 4px);pointer-events:none;"></div>
+      <div style="text-align:center;position:relative;">
+        <div style="font-size:48px;filter:drop-shadow(0 0 12px #00eaff) drop-shadow(0 0 4px #00eaff);opacity:0.85;">◈</div>
+        <div style="color:#00eaff;font-size:11px;letter-spacing:4px;margin-top:6px;font-family:monospace;text-shadow:0 0 8px #00eaff;">CLAUDE</div>
+        <div style="width:60px;height:1px;background:linear-gradient(90deg,transparent,#00eaff,transparent);margin:6px auto;opacity:0.7;"></div>
+        <div style="color:#00eaff99;font-size:9px;letter-spacing:2px;font-family:monospace;">ONLINE</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Hologram / HUD</h3>
+      <p>Sci-fi scanline projection — glowing wireframe with animated rings and waveform while talking.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="waveform" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#0a0a0a;display:flex;align-items:center;justify-content:center;height:160px;border-radius:8px 8px 0 0;overflow:hidden;">
+      <svg width="200" height="80" viewBox="0 0 200 80">
+        <defs>
+          <linearGradient id="wg" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#6366f1"/>
+            <stop offset="50%" stop-color="#a78bfa"/>
+            <stop offset="100%" stop-color="#06b6d4"/>
+          </linearGradient>
+        </defs>
+        <path d="M0,40 Q10,10 20,40 Q30,70 40,40 Q50,5 60,40 Q70,75 80,40 Q90,8 100,40 Q110,72 120,40 Q130,12 140,40 Q150,68 160,40 Q170,18 180,40 Q190,62 200,40" fill="none" stroke="url(#wg)" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="100" cy="40" rx="100" ry="30" fill="none" stroke="#a78bfa22" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="card-body">
+      <h3>Voice Waveform</h3>
+      <p>Animated audio bars or wave that pulses and breathes. Minimal, audio-focused presence.</p>
+    </div>
+  </div>
+
+</div>
+
+<style>
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 40px #7c3aed88, 0 0 80px #4c1d9544; transform: scale(1); }
+  50% { box-shadow: 0 0 60px #7c3aedcc, 0 0 100px #4c1d9566; transform: scale(1.04); }
+}
+.card { cursor: pointer; }
+</style>
