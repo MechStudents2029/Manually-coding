@@ -10,7 +10,7 @@ export const RANGE = {
   general: [0.47, 0.5, 0.55, 0.58],
   memory: [0.58, 0.62, 0.7, 0.74],
   manifesto: [0.73, 0.77, 0.81, 0.85],
-  cta: [0.84, 0.9, 1, 1],
+  cta: [0.84, 0.9, 1, 1.2],
 };
 
 export const MODES = [
