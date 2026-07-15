@@ -1,0 +1,116 @@
+{
+  "project_name": "Northstar AI 3D Landing Page",
+  "app_type": "3d_experience",
+  "theme_mode": "dark",
+  "typography": {
+    "primary_heading": "Outfit, sans-serif",
+    "secondary_body": "JetBrains Mono, monospace",
+    "pairing_strategy": "The 'Editorial Future' archetype. Outfit brings wide, tech-forward energy to massive headings. JetBrains Mono adds a sterile, precision-engineered aesthetic to labels, small texts, and the editorial marquee.",
+    "scale": {
+      "h1": "text-5xl sm:text-6xl tracking-tighter leading-none font-black",
+      "h2": "text-4xl sm:text-5xl tracking-tight font-bold",
+      "h3": "text-2xl sm:text-3xl font-medium",
+      "body": "text-base leading-relaxed text-gray-300",
+      "labels": "text-xs tracking-[0.2em] uppercase font-mono text-cyan-400"
+    }
+  },
+  "colors": {
+    "background": {
+      "main": "#0a0a0f",
+      "surface_glass": "rgba(10, 10, 15, 0.75)"
+    },
+    "accents": {
+      "electric_violet": "#8b5cf6",
+      "cyan": "#22d3ee",
+      "hot_pink": "#ec4899"
+    },
+    "text": {
+      "primary": "#ffffff",
+      "secondary": "#a1a1aa"
+    }
+  },
+  "visual_enhancers": {
+    "gradient_treatment": "Electric violet to cyan drifting background gradient, mapped to a 3D plane or fixed div behind the 3D canvas. Subdued opacity (10-20%) to let the robot pop.",
+    "glassmorphism": "backdrop-blur-xl bg-[#0a0a0f]/80 border-b border-white/10 for header.",
+    "glow_bloom": "Use EffectComposer in R3F with Bloom pass for the robot's eyes and the pulsing button. For DOM elements, use box-shadow: 0 0 20px rgba(139, 92, 246, 0.5).",
+    "textures": "Procedural noise or starfield over the dark background to avoid digital flatness."
+  },
+  "layouts_and_grids": {
+    "spacing_system": "Generous. Use p-8, py-24, py-32 for sections.",
+    "hero": "100vh height. Text positioned via absolute overlapping the 3D canvas.",
+    "modes_section": "Bento-style text overlay or full-screen scroll-snapping points aligned to the left, while robot stays fixed in the center/right."
+  },
+  "motion_and_interactions": {
+    "smooth_scroll": "Lenis for momentum scrolling.",
+    "scroll_scrubbing": "Use framer-motion's useScroll and useTransform mapped to R3F's useFrame to rotate and transition the robot's poses.",
+    "page_load": "Framer-motion staggered line-by-line reveal for the hero headline.",
+    "hover_states": "Buttons must shift colors and increase glow spread on hover. Never use generic 'transition: all'."
+  },
+  "sections_blueprint": [
+    {
+      "name": "Navigation",
+      "details": "Fixed sticky header, glassmorphic dark bg. Logo: Northstar."
+    },
+    {
+      "name": "Hero",
+      "details": "Masked line-by-line text reveal: 'An AI agent that gets smarter every time you talk to it.' Robot floats center-screen with a subtle idle bob and rotation."
+    },
+    {
+      "name": "Modes",
+      "details": "Scroll-triggered. Study Mode (book + blue wash), Code Mode (bracket + green wash), Late Night Talk Mode (moon + purple wash), General Mode (orb + white wash)."
+    },
+    {
+      "name": "Memory",
+      "details": "Floating DOM text snippets or 3D text fragments orbiting the robot. Neural thread canvas or SVG connection."
+    },
+    {
+      "name": "Manifesto & Marquee",
+      "details": "Numbered chapters using JetBrains Mono. react-fast-marquee showing 'NORTHSTAR - ALWAYS LEARNING' at the section divider."
+    },
+    {
+      "name": "CTA",
+      "details": "Camera pulls back. Robot in ready pose. Bright pulsing 'Start Talking' button."
+    }
+  ],
+  "3d_libraries_and_steps": {
+    "libraries": ["three", "@react-three/fiber", "@react-three/drei"],
+    "setup_steps": [
+      "1. Wrap the entire app or main scrolling area in Lenis.",
+      "2. Set up a fixed Canvas taking 100vw and 100vh.",
+      "3. Use ScrollControls from @react-three/drei or Framer Motion's useScroll to sync Three.js camera/group rotation with DOM scroll.",
+      "4. Build the Robot procedurally using <CapsuleGeometry> for body, <SphereGeometry> for head. Apply MeshStandardMaterial with soft shading.",
+      "5. Add post-processing <EffectComposer> and <Bloom> for glowing eyes/accents."
+    ]
+  },
+  "accessibility": {
+    "contrast": "Ensure white text against #0a0a0f meets APCA guidelines."
+  },
+  "image_urls": [],
+  "component_paths": {
+    "header": "/app/frontend/src/components/ui/Header.js",
+    "hero": "/app/frontend/src/components/sections/Hero.js",
+    "canvas": "/app/frontend/src/components/canvas/RobotCanvas.js"
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "DO NOT use Inter or Space Grotesk. Strictly use Outfit and JetBrains Mono.",
+    "DO NOT use a fully transparent header; use backdrop-blur with a semi-transparent dark background (e.g. bg-[#0a0a0f]/80).",
+    "Ensure 3D scenes have adequate lighting (AmbientLight + DirectionalLight) so the soft-shaded robot isn't flat black.",
+    "Use proper z-indexing. The 3D canvas should be fixed in the background (z-0), and DOM elements layered above (z-10, z-20).",
+    "Implement 'data-testid' on all interactive DOM elements.",
+    "Avoid generic centered layouts except in the Hero. Use asymmetrical grid alignment for the Modes content.",
+    "DO NOT rely on external images. Build the entire visual experience via CSS gradients, text, and Three.js primitives.",
+    "Ensure the application strictly uses .js files, NOT .tsx files."
+  ],
+  "instructions_to_main_agent": {
+    "robot_implementation": "Build a multi-part Three.js group representing the robot. Animate the group's rotation.y based on scroll progress.",
+    "dom_overlay": "Use framer-motion for the textual overlays in the sections. As the user scrolls, fade out Hero text and fade in Modes text.",
+    "installation": "Ensure 'three', '@react-three/fiber', '@react-three/drei', 'framer-motion', '@studio-freight/react-lenis', 'lucide-react', and 'react-fast-marquee' are installed."
+  },
+  "GENERAL_UI_UX_DESIGN_GUIDELINES": [
+    "All interactive and key informational elements MUST include a data-testid attribute to facilitate robust automated testing.",
+    "Ensure all text has a minimum contrast ratio of 4.5:1 against backgrounds.",
+    "Buttons and links must have distinct hover, focus, and active states.",
+    "Never use completely transparent backgrounds for overlays or headers over content.",
+    "Rely heavily on typography and negative space for hierarchy."
+  ]
+}
