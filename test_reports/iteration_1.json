@@ -1,0 +1,37 @@
+{
+  "summary": "Frontend-only smoke + interaction test of the Northstar 3D scroll landing page. Verified page load, zero console errors, WebGL canvas rendering (robot visible in screenshot), fixed nav visibility + brand text, all three nav buttons scroll to their target sections (mode-study, memory-section, manifesto-section) with those overlays reaching opacity 1, cross-fade behavior via progressMV works across scroll ranges, and the Start Talking CTA button scrolls back to top (hero opacity returns to 1). No backend testing was requested and none was performed.",
+  "backend_issues": { "critical": [], "minor": [] },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Scroll driver uses height:900vh so window.scrollY/(scrollHeight-innerHeight) yields a progress value ~1.125x the fraction of scrollHeight — programmatic scroll callers (and the tester's fraction guide) must account for this. The in-app scrollToFraction() (used by nav) works because it scales max = scrollHeight - innerHeight, which is correct. Consider unifying so window.__lenis.scrollTo also accepts a normalized progress fraction to avoid confusion.",
+    "RANGE.cta ends with useTransform inputRange [0.84, 0.9, 1, 1] mapped to [0,1,1,0]; because two of the input stops are identical (1,1) framer-motion clamps and the final segment can collapse to 0 at exactly progress=1 (seen as opacity 0 during test when progress overshot 1). Consider RANGE.cta: [0.84, 0.9, 1.0, 1.05] or clamp:false + slightly wider bounds so the CTA copy stays fully visible when parked at the bottom. During the actual click the button is still reachable (pointer-events:auto on the button), so this is a minor polish issue only.",
+    "useLenis.js overrides scrollState.progress from window.scrollY every frame; if any code paths ever rely on Lenis' own animated position (lenis.scroll), those two will drift during smooth animations. Currently fine because both consumers read the same value."
+  ],
+  "updated_files": [],
+  "success_rate": { "backend": "N/A", "frontend": "100%" },
+  "test_credentials": "N/A - frontend only, no auth",
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Programmatic scrolling MUST use window.__lenis.scrollTo(...). Note that scrollHeight*frac does not equal the progress value used by useTransform because Lenis-computed progress uses (scrollHeight - innerHeight) as denominator; at 1920x800 with 900vh scroll driver the multiplier is ~1.125. To hit a section reliably use: page.evaluate('window.__lenis.scrollTo((document.documentElement.scrollHeight - window.innerHeight) * <targetProgress>, {immediate:true})'). All content is fixed overlays cross-fading by opacity — assert on the parent fixed motion.div's computed opacity, not on scrollIntoView. The robot-canvas WebGL context is claimed by Three.js; re-querying getContext('webgl') from the test returns null even though rendering works — verify via canvas dimensions + screenshot instead.",
+  "test_observations": {
+    "console_errors": 0,
+    "landing_page_present": true,
+    "robot_canvas_dims": "1920x800",
+    "robot_rendered_via_screenshot": true,
+    "nav_click_results": {
+      "nav-modes": "mode-study parent opacity 1.0",
+      "nav-memory": "memory-section parent opacity 1.0",
+      "nav-manifesto": "manifesto-section parent opacity 1.0"
+    },
+    "start_talking_scrolls_to_top": true,
+    "hero_opacity_after_cta_click": 1
+  },
+  "rca of the issue": "No blocking issues found."
+}
